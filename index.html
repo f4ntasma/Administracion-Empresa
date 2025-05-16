@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusPay - Sistema de Gestión de Transacciones</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h1>NexusPay</h1>
+      </div>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <span>Gh</span>
+        </div>
+        <div class="user-info">
+          <h3>Ghost</h3>
+          <p>Director Financiero</p>
+        </div>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li class="active">
+            <a href="#">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Transacciones</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-chart-pie"></i>
+              <span>Análisis</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-users"></i>
+              <span>Clientes</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-file-invoice-dollar"></i>
+              <span>Facturas</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-cog"></i>
+              <span>Configuración</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <button class="help-button">
+          <i class="fas fa-question-circle"></i>
+          <span>Ayuda</span>
+        </button>
+        <button class="logout-button">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="search-container">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar transacciones, clientes, facturas...">
+        </div>
+        
+        <div class="header-actions">
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="badge">3</span>
+          </button>
+          <button class="messages-btn">
+            <i class="fas fa-envelope"></i>
+            <span class="badge">5</span>
+          </button>
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard">
+        <div class="page-header">
+          <h2>Dashboard Financiero</h2>
+          <div class="date-filter">
+            <button class="date-btn active">Hoy</button>
+            <button class="date-btn">Esta Semana</button>
+            <button class="date-btn">Este Mes</button>
+            <button class="date-btn custom">
+              <i class="fas fa-calendar"></i>
+              Personalizado
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon income">
+              <i class="fas fa-arrow-up"></i>
+            </div>
+            <div class="stat-details">
+              <h3>Ingresos Totales</h3>
+              <p class="stat-value">$1,458,290</p>
+              <p class="stat-change positive">
+                <i class="fas fa-caret-up"></i>
+                23.5% vs mes anterior
+              </p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon expense">
+              <i class="fas fa-arrow-down"></i>
+            </div>
+            <div class="stat-details">
+              <h3>Gastos Totales</h3>
+              <p class="stat-value">$985,420</p>
+              <p class="stat-change negative">
+                <i class="fas fa-caret-down"></i>
+                12.3% vs mes anterior
+              </p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon profit">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-details">
+              <h3>Beneficio Neto</h3>
+              <p class="stat-value">$472,870</p>
+              <p class="stat-change positive">
+                <i class="fas fa-caret-up"></i>
+                8.7% vs mes anterior
+              </p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon pending">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-details">
+              <h3>Transacciones Pendientes</h3>
+              <p class="stat-value">24</p>
+              <p class="stat-change neutral">
+                <i class="fas fa-minus"></i>
+                Sin cambios
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-container">
+          <div class="chart-card large">
+            <div class="card-header">
+              <h3>Flujo de Transacciones</h3>
+              <div class="card-actions">
+                <button class="card-action-btn">
+                  <i class="fas fa-download"></i>
+                </button>
+                <button class="card-action-btn">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+            <div class="chart-container" id="transactionFlowChart">
+              <!-- Chart will be rendered here with JS -->
+              <div class="chart-placeholder">
+                <div class="chart-bars">
+                  <div class="chart-bar" style="height: 60%"></div>
+                  <div class="chart-bar" style="height: 80%"></div>
+                  <div class="chart-bar" style="height: 40%"></div>
+                  <div class="chart-bar" style="height: 70%"></div>
+                  <div class="chart-bar" style="height: 90%"></div>
+                  <div class="chart-bar" style="height: 50%"></div>
+                  <div class="chart-bar" style="height: 75%"></div>
+                </div>
+                <div class="chart-labels">
+                  <span>Lun</span>
+                  <span>Mar</span>
+                  <span>Mié</span>
+                  <span>Jue</span>
+                  <span>Vie</span>
+                  <span>Sáb</span>
+                  <span>Dom</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="chart-card">
+            <div class="card-header">
+              <h3>Distribución de Gastos</h3>
+              <div class="card-actions">
+                <button class="card-action-btn">
+                  <i class="fas fa-download"></i>
+                </button>
+                <button class="card-action-btn">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+            <div class="chart-container" id="expenseDistributionChart">
+              <!-- Donut chart placeholder -->
+              <div class="donut-chart-placeholder">
+                <div class="donut-segment segment-1"></div>
+                <div class="donut-segment segment-2"></div>
+                <div class="donut-segment segment-3"></div>
+                <div class="donut-segment segment-4"></div>
+                <div class="donut-center">
+                  <span>Gastos</span>
+                </div>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: #6366f1"></span>
+                  <span>Operaciones</span>
+                  <span>42%</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: #8b5cf6"></span>
+                  <span>Marketing</span>
+                  <span>28%</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: #ec4899"></span>
+                  <span>Desarrollo</span>
+                  <span>18%</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: #14b8a6"></span>
+                  <span>Otros</span>
+                  <span>12%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="transactions-section">
+          <div class="section-header">
+            <h3>Transacciones Recientes</h3>
+            <button class="view-all-btn">
+              Ver Todas
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          
+          <div class="transactions-table-container">
+            <table class="transactions-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Cliente</th>
+                  <th>Fecha</th>
+                  <th>Monto</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="transactionsTableBody">
+                <!-- Table rows will be added dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- New Transaction Section -->
+        <div class="new-transaction-section">
+          <div class="section-header">
+            <h3>Nueva Transacción</h3>
+          </div>
+          
+          <form class="transaction-form" id="newTransactionForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="transactionType">Tipo de Transacción</label>
+                <select id="transactionType" required>
+                  <option value="">Seleccionar tipo</option>
+                  <option value="income">Ingreso</option>
+                  <option value="expense">Gasto</option>
+                  <option value="transfer">Transferencia</option>
+                  <option value="investment">Inversión</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="clientName">Cliente/Proveedor</label>
+                <input type="text" id="clientName" placeholder="Nombre del cliente o proveedor" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="amount">Monto</label>
+                <div class="amount-input">
+                  <span class="currency-symbol">$</span>
+                  <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="transactionDate">Fecha</label>
+                <input type="date" id="transactionDate" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="description">Descripción</label>
+                <textarea id="description" rows="3" placeholder="Detalles de la transacción"></textarea>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="category">Categoría</label>
+                <select id="category" required>
+                  <option value="">Seleccionar categoría</option>
+                  <option value="operations">Operaciones</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="development">Desarrollo</option>
+                  <option value="sales">Ventas</option>
+                  <option value="hr">Recursos Humanos</option>
+                  <option value="other">Otros</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="paymentMethod">Método de Pago</label>
+                <select id="paymentMethod" required>
+                  <option value="">Seleccionar método</option>
+                  <option value="bank_transfer">Transferencia Bancaria</option>
+                  <option value="credit_card">Tarjeta de Crédito</option>
+                  <option value="cash">Efectivo</option>
+                  <option value="check">Cheque</option>
+                  <option value="crypto">Criptomoneda</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Crear Transacción</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
